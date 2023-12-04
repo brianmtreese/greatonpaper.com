@@ -31,10 +31,11 @@ navigation:
   - text: Home
     url: /
   - text: About
-    url: /about/
+    url: /about
 
 # The shortname for your Disqus site to enable comments.
-disqus: greatonpaper.com
+disqus: 
+  shortname: greatonpaper-com
 
 # Colors
 accent_color: '#ff374a'
@@ -54,7 +55,7 @@ paginate_path: 'blog/page:num/'
 
 
 # Permalinks
-permalink: /:title
+permalink: /:title/
 
 # Conversion
 markdown: kramdown
