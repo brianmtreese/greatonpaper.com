@@ -2,6 +2,16 @@
    4. Site Header
    ========================================================================== */
 
+.site-banner {
+  background-image: url('/images/cropped-Header-Background-Pattern.png');
+  background-position: center;
+  background-size: cover;
+  border-bottom: 1px solid #eee;
+  margin-inline: -30px;
+  padding-block: 24px;
+  text-align: center;
+}
+
 .site-header {
   border-bottom: 1px solid _palette(border);
   -ms-flex-align: center;
@@ -12,6 +22,11 @@
   display: flex;
   padding-bottom: 3.33333em;
   padding-top: 2.5em;
+}
+
+.logo-text::after {
+  content: '.';
+  color: #ff374a;
 }
 
 .site-title {

@@ -9,7 +9,7 @@ layout: default
       <time class="post-date" datetime="{{ page.date | date: "%Y-%m-%d" }}">{{page.date | date: "%B %-d, %Y" }}</time>
       <h1 class="post-title">{{page.title}}</h1>
       <div class="post-meta">
-        By <span class="post-author">{{ site.data.author.name }}</span>{% if page.tags.size > 0 %}<span class="post-tags"> in {% for tag in page.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag | cgi_escape }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>{% endif %}
+        By <span class="post-author">{{ site.data.author.name }}</span>{% if page.categories.size > 0 %}<span class="post-tags"> in {% for category in page.categories %}<a href="{{ site.baseurl }}/categories/#{{ category | cgi_escape }}" rel="tag">{{ category }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>{% endif %}
       </div><!-- .post-meta -->
       {% if page.feature_image and page.feature_image != "" %}
       <figure class="post-thumbnail image-card width-wide">
@@ -20,6 +20,10 @@ layout: default
     <div class="post-content">
       {{content}}
     </div><!-- .post-content -->
+    {% if page.tags.size > 0 %}
+      <div class="post-tags-list"><strong>Tags:</strong> {% for tag in page.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag | cgi_escape }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+      </div>
+    {% endif %}
     <div class="post-share">
       <span>Share:</span>
       <a target="_blank"
@@ -27,7 +31,7 @@ layout: default
       <a target="_blank"
         href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}&amp;t={{ page.title | uri_escape }}" rel="noopener">Facebook</a>
     </div><!-- .share-post -->
-    <div class="author-box">
+    <!-- <div class="author-box">
       {% if site.data.author.image and site.data.author.image != "" %}
       <div class="author-avatar" style="background-image: url('{{ site.data.author.image }}')"><span class="screen-reader-text">{{ site.data.author.name }}'s Picture</span></div>
       {% endif %}
@@ -40,12 +44,69 @@ layout: default
         {% if site.data.author.url and site.data.author.url != "" %}
         <span class="author-website"><a href="{{ site.data.author.url }}" target="_blank" rel="noopener">{{ site.data.author.url }}</a></span>
         {% endif %}
-      </div><!-- .author-details -->
-    </div><!-- .author-box -->
+      </div>
+    </div> -->
   </article><!-- .post -->
 
   {% if site.disqus and site.disqus != "" %}
     {% include disqus.html %}
   {% endif %}
+
+  <div class="post-related">
+
+    <h3>You May Also Enjoy</h3>
+
+      {% assign maxRelated = 4 %}
+      {% assign minCommonCategories =  2 %}
+      {% assign maxRelatedCounter = 0 %}
+
+      {% for post in site.posts %}
+
+        {% assign sameCategoryCount = 0 %}
+        {% assign commonCategories = '' %}
+
+        {% for category in post.categories %}
+          {% if post.url != page.url %}
+            {% if page.categories contains category %}
+              {% assign sameCategoryCount = sameCategoryCount | plus: 1 %}
+              {% capture categorymarkup %} <span class="label label-default">{{ category }}</span> {% endcapture %}
+              {% assign commonCategories = commonCategories | append: categorymarkup %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {% if sameCategoryCount >= minCommonCategories %}
+          <div class="post-related-content">
+            {% if post.feature_image and post.feature_image != "" %}
+            <figure class="post-related-image">
+              <a href="{{site.baseurl}}{{post.url}}"><img src="{{ post.feature_image | relative_url }}"
+                  alt="{{ post.title }}"></a>
+            </figure><!-- .post-thumbnail -->
+            {% endif %}
+            <div class="post-related-main">
+              <time class="post-date" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{post.date | date: "%B %-d, %Y" }}</time>
+              <h4><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h4>
+              <div class="post-meta">
+                By <span class="post-author">{{ site.data.author.name }}</span>
+              </div>
+              <div class="post-content">
+                {% if post.description %}
+                {{ post.description }}...
+                {% endif %}
+                <p class="read-more"><a href="{{ site.baseurl }}{{ post.url }}" class="read-more-link">Continue reading &rarr;</a>
+                </p>
+              </div><!-- .post-content -->
+            </div>
+          </div>
+          {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+          {% if maxRelatedCounter >= maxRelated %}
+            {% break %}
+          {% endif %}
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
 
 </main><!-- .main-content -->
