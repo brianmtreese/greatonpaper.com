@@ -9,22 +9,22 @@
 lang: en-US
 
 # Site title
-title: "Scriptor"
+title: "Great on Paper"
 
 # A description of your site for meta tag, search engine results.
-description: "Scriptor is a minimal, clean, modern & responsive Jekyll theme for writers"
+description: "When life looks great on paper, but doesn't add up in your heart, what do you do?"
 
 # The subpath of your site, e.g. /blog, for generating urls.
 baseurl: "greatonpaper.com"
 
 # The base hostname & protocol of your site for where absolute urls are needed.
-url: "greatonpaper.com"
+url: "https://greatonpaper.com"
 
 # Favicon
 favicon: images/favicon.png
 
 # Google Analytics id, e.g. "UA-NNNNNNNN-N"
-google_analytics: ""
+google_analytics: "UA-151352028-1"
 
 # Site navigation - each item must have a title and a url.
 navigation:
@@ -32,31 +32,25 @@ navigation:
     url: /
   - text: About
     url: /about/
-  - text: Style Guide
-    url: /style-guide/
-  - text: Tags
-    url: /tags/
-  - text: Download
-    url: https://github.com/JustGoodThemes/Scriptor-Jekyll-Theme
 
 # The shortname for your Disqus site to enable comments.
-disqus: justgoodthemes
+disqus: greatonpaper.com
 
 # Colors
-accent_color: '#2d72d9'
+accent_color: '#ff374a'
 
 # Site footer
 footer:
-  content: "&copy; Scriptor all rights reserved. Theme by [JustGoodThemes](https://www.justgoodthemes.com)."
-  has_social: true
+  content: "&copy; Great on Paper all rights reserved."
+  has_social: false
 
 # Plugins
 plugins:
   - jekyll-paginate
 
 # http://jekyllrb.com/docs/pagination/
-paginate: 3
-paginate_path: '/page:num/'
+paginate: 10
+paginate_path: 'blog/page:num/'
 
 
 # Permalinks

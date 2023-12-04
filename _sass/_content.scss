@@ -11,6 +11,18 @@
   margin-bottom: 1.66667em;
 }
 
+.post-thumbnail {
+  aspect-ratio: 800 / 450;
+
+  img {
+    background-color: #f2f2f2;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+}
+
 .post-date {
   color: _palette(meta);
   display: inline-block;
@@ -55,6 +67,81 @@
 
 .read-more {
   font-weight: bold;
+}
+
+.post-related {
+  padding: 1.66667em 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.post-related-content {
+  padding: 1.66667em 0 0;
+  border-bottom: 1px solid #d7d7d7;
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+}
+
+.post-related-image {
+  aspect-ratio: 800 / 450;
+
+  img {
+    background-color: #f2f2f2;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+}
+
+.post-related-main {
+
+  .post-date {
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .post-meta {
+    margin-bottom: 8px;
+  }
+
+  h4 {
+    margin: 5px 0;
+  }
+
+}
+
+@media only screen and (min-width: 971px) {
+  .post-thumbnail.width-wide img {
+    width: calc(100% + 120px);
+  }
+
+  .post-related-content {
+    align-items: flex-start;
+    display: flex;
+    gap: 30px;
+
+    .post-related-image {
+      flex: 1;
+    }
+
+  }
+
+  .post-related-main {
+    flex: 1;
+
+    .post-date {
+      margin-top: 0;
+    }
+
+  }
+
 }
 
 /* Author profile */
